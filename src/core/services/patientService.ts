@@ -41,7 +41,7 @@ const updatePatient = (id: string, data: IPatientDTO) => {
 
 const deletePatient = async (id: string) => {
   try {
-    return PatientModel.findOneAndDelete();
+    return PatientModel.deleteOne({ id: id});
   } catch (error: any) {
     throw error;
   }
