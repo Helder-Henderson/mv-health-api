@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { IPatient, IPatientDTO } from "../interfaces/patient";
+import { IPatient } from "../interfaces/patient";
+import { IPatientDTO } from "../interfaces/patientDto";
 
 export class Patient implements IPatient {
   public readonly id!: string;

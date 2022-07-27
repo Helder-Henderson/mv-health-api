@@ -1,5 +1,5 @@
 import PatientModel from "../../db/models/patient";
-import { IPatientDTO } from "../entities/interfaces/patient";
+import { IPatientDTO } from "../entities/interfaces/patientDto";
 import { Patient } from "../entities/patient/Patient";
 import { PatientDTO } from "../entities/patient/PatientDTO";
 
@@ -28,10 +28,12 @@ const findPatient = (id: string) => {
     throw error;
   }
 };
+
 const updatePatient = (id: string, data: IPatientDTO) => {
   try {
-    const patientDTO: IPatientDTO = new PatientDTO(data);
-    return PatientModel.updateOne({ id: id }, patientDTO);
+    const patientDto: IPatientDTO = new PatientDTO(data);
+    console.log(patientDto);
+    return PatientModel.updateOne({ id: id }, patientDto);
   } catch (error: any) {
     throw error;
   }
@@ -39,7 +41,7 @@ const updatePatient = (id: string, data: IPatientDTO) => {
 
 const deletePatient = async (id: string) => {
   try {
-    return PatientModel.findOneAndDelete()
+    return PatientModel.findOneAndDelete();
   } catch (error: any) {
     throw error;
   }

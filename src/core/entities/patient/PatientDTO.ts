@@ -1,4 +1,4 @@
-import { IPatientDTO } from "../interfaces/patient";
+import { IPatientDTO } from "../interfaces/patientDto";
 
 export class PatientDTO {
   public name!: string;
@@ -6,6 +6,8 @@ export class PatientDTO {
   public address!: string;
 
   constructor(props: IPatientDTO) {
-    Object.assign(this, props);
+    this.address = props.address;
+    this.name = props.name;
+    this.healthInsuranceCardId = props.healthInsuranceCardId;
   }
 }

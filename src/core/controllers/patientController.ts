@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IBodyPatient } from "../entities/interfaces/patient";
+import { IBodyPatient } from "../entities/interfaces/patientDto";
 import patientService from "../services/patientService";
 import swaggerDocument from "../../swagger.json";
 
@@ -44,7 +44,6 @@ const postPatient = async (request: Request, response: Response) => {
 const deletePatient = async (request: Request, response: Response) => {
   try {
     const patientDe = await patientService.deletePatient(request.params.id);
-    console.log(patientDe);
     return response.status(201).send("The patient was deleted successfully");
   } catch (error: any) {
     return response.status(400).json({ statusCode: 400, message: `${error}` });

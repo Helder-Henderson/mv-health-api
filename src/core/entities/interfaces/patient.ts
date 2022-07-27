@@ -6,12 +6,3 @@ export interface IPatient {
   createdAt: string;
 }
 
-export interface IPatientDTO {
-  name: string;
-  healthInsuranceCardId: string;
-  address: string;
-}
-
-export interface IBodyPatient {
-  patient: IPatientDTO;
-}
