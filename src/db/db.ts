@@ -6,14 +6,25 @@ const connectionString: string = dotenv?.DB_CONNECTION
   ? dotenv.DB_CONNECTION
   : "";
 
-mongoose
-  .connect(connectionString)
-  .then(() => {
-    console.log(`[server]: MongoDB was connected`);
-  })
-  .catch((error) => {
-    console.log(`[Error]: ${error}`);
-  });
+let isConnect = false;
+
+const millisecondsToWait = 10000;
+
+(function connectDatabase() {
+  mongoose
+    .connect(connectionString)
+    .then(() => {
+      isConnect = true;
+      console.log(`[server]: MongoDB was connected`);
+    })
+    .catch((error) => {
+      console.log(`[Error]: ${error}`);
+      console.log(`[Info]: Retry in ${millisecondsToWait} MS`);
+      setTimeout(() => {
+        connectDatabase();
+      }, millisecondsToWait);
+    });
+})();
 
 mongoose.Promise = global.Promise;
 
